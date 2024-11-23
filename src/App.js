@@ -9,7 +9,7 @@ const API_BASE_URL = "http://127.0.0.1:5000";
 const App = () => {
   const [animeList, setAnimeList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(12);
+  const [rowsPerPage, setRowsPerPage] = useState(12); // Початкове значення кратне 12
   const [searchParams, setSearchParams] = useSearchParams();
 
   const categoryFromUrl = searchParams.get("category") || "all"; // Зчитування категорії з URL
@@ -112,7 +112,7 @@ const App = () => {
           </Box>
           <Select
             value={rowsPerPage}
-            onChange={(e) => setRowsPerPage(e.target.value)}
+            onChange={(e) => setRowsPerPage(parseInt(e.target.value, 10))} // Перетворюємо в число
             sx={{
               color: "#00bcd4",
               border: "1px solid #ffa500",
@@ -120,8 +120,8 @@ const App = () => {
             }}
           >
             <MenuItem value={12}>12 rows</MenuItem>
-            <MenuItem value={15}>15 rows</MenuItem>
-            <MenuItem value={20}>20 rows</MenuItem>
+            <MenuItem value={24}>24 rows</MenuItem>
+            <MenuItem value={48}>48 rows</MenuItem>
           </Select>
         </Box>
 
