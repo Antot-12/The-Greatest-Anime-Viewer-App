@@ -37,16 +37,49 @@ def get_anime():
 @app.route("/api/categories", methods=["POST"])
 def update_category():
     data = request.json
+    if not data or "title" not in data or "categories" not in data:
+        return jsonify({"error": "Invalid data"}), 400
+
+    anime_list = load_data()
+    anime_found = False
+
+    for anime in anime_list:
+        if anime["title"] == data["title"]:
+            anime_found = True
+            if "categories" not in anime:
+                anime["categories"] = []
+            # Оновлюємо категорії (додаємо або видаляємо з них)
+            new_categories = set(anime["categories"] + data["categories"])
+            anime["categories"] = list(new_categories)
+            break
+
+    if not anime_found:
+        return jsonify({"error": "Anime not found"}), 404
+
+    save_data(anime_list)
+    return jsonify({"message": "Category updated successfully!", "categories": anime["categories"]})
+
+@app.route("/api/delete_category", methods=["POST"])
+def delete_category():
+    data = request.json
     if not data or "title" not in data or "category" not in data:
         return jsonify({"error": "Invalid data"}), 400
 
     anime_list = load_data()
+    anime_found = False
+
     for anime in anime_list:
         if anime["title"] == data["title"]:
-            anime["category"] = data.get("category", "unknown")
+            anime_found = True
+            if "categories" in anime and data["category"] in anime["categories"]:
+                anime["categories"].remove(data["category"])  # Видаляємо категорію
+            break
+
+    if not anime_found:
+        return jsonify({"error": "Anime not found"}), 404
 
     save_data(anime_list)
-    return jsonify({"message": "Category updated successfully!"})
+    return jsonify({"message": "Category deleted successfully!"})
 
 @app.route("/api/proxy_image", methods=["GET"])
 def proxy_image():
@@ -69,3 +102,4 @@ def proxy_image():
 
 if __name__ == "__main__":
     app.run(debug=True)
+

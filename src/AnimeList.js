@@ -1,21 +1,30 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import AnimeCard from "./AnimeCard";
 
-const AnimeList = ({ animeList, currentTab, onUpdateCategory, apiBaseUrl }) => {
+const AnimeList = ({ animeList, onUpdateCategory, onDeleteAnime, apiBaseUrl, category }) => {
   return (
-    <Grid container rowSpacing={8} columnSpacing={2}>
-      {animeList.map((anime, index) => (
-        <Grid item xs={12} sm={6} md={4} key={index}>
-          <AnimeCard
-            anime={anime}
-            currentTab={currentTab} // Передаємо поточну вкладку
-            onUpdateCategory={onUpdateCategory}
-            apiBaseUrl={apiBaseUrl}
-          />
-        </Grid>
+    <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)", // 3 стовпці
+        gap: "60px 10px", // Вертикальний gap 30px, горизонтальний gap 50px
+        justifyItems: "center", // Центрування карток по горизонталі
+        paddingBottom: "80px", // Більший відступ знизу контейнера
+        marginTop: "40px", // Додано більший відступ зверху
+      }}
+    >
+      {animeList.map((anime) => (
+        <AnimeCard
+          key={anime.title}
+          anime={anime}
+          onUpdateCategory={onUpdateCategory}
+          onDeleteAnime={onDeleteAnime}
+          apiBaseUrl={apiBaseUrl}
+          category={category}
+        />
       ))}
-    </Grid>
+    </Box>
   );
 };
 

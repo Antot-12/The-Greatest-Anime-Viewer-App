@@ -1,70 +1,100 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Anime List Project 🎥📚
 
-## Available Scripts
+Welcome to the **Anime List** project! 🎉 This is a simple web application for browsing, searching, and categorizing anime. You can manage anime by assigning them to categories like **favorites**, **watched**, **to watch**, etc. The app allows you to filter and search anime based on various criteria.
 
-In the project directory, you can run:
+## Features ✨
 
-### `npm start`
+- **Anime Search** 🔍: Easily search anime by title or year.
+- **Category Management** 📋: Organize your anime into different categories like favorites, watched, to watch, etc.
+- **Pagination** 📄: Browse through long lists of anime using pagination.
+- **Language Support** 🌍: Toggle between English and Ukrainian languages (though the translation still needs some work).
+- **Responsive Design** 📱: Works great on both desktop and mobile devices.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Backend Details 💻
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This project uses **Flask** for the backend. Here's what the backend provides:
 
-### `npm test`
+### API Endpoints 📡
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **GET /api/anime**: Fetch all anime data.
+- **POST /api/categories**: Update the categories of a specific anime.
+- **POST /api/delete_category**: Delete a category from a specific anime.
+- **GET /api/proxy_image**: Proxy and cache anime images to avoid issues with image fetching.
 
-### `npm run build`
+The app also includes a **scraper** written in Python that fetches anime information from an external site.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Scraper Features 📜
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Scraping Anime Data**: The scraper collects anime data, including titles, image URLs, categories, ratings, voice actors, and more from a third-party website.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Saving Data**: The scraped anime data is stored in a `anime_data.json` file, which the app uses to display the anime list.
 
-### `npm run eject`
+## Screenshots 📸
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Anime List Screen](./screens/screenshot1.png)  
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+*Main screen displaying anime list*
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Anime Search](./screens/screenshot2.png)  
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+*Search feature in action*
 
-## Learn More
+![Anime Categories](./screens/screenshot3.png)  
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+*Category management interface*
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Installation 🛠️
 
-### Code Splitting
+To get started, clone this repository and follow the steps below:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Frontend (React)
 
-### Analyzing the Bundle Size
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Antot-12/The-Greatest-Anime-Viewer-App.git
+  
+   cd anime-list
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-### Making a Progressive Web App
+3. **Start the app**:
+   ```bash
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Your app should now be running on `http://localhost:3000/all`.
 
-### Advanced Configuration
+### Backend (Flask)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. **Install dependencies**:
+   Ensure you have Python 3.x installed and then run:
+   ```bash
+   pip install flask flask-cors flask-caching requests beautifulsoup4
+   ```
 
-### Deployment
+2. **Run the Flask server**:
+   ```bash
+   python app.py
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The Flask API will be running on `http://localhost:5000`.
 
-### `npm run build` fails to minify
+## Technologies Used 💻
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Python** 🐍📜💻 (for backend and web scraping)
+- **Flask** 🍶 (backend web framework)
+- **React** ⚛️ (frontend)
+- **Material-UI** 🎨 (for UI components)
+- **Axios** 🔌 (for HTTP requests)
+- **Node.js** 🟩 (for running the React app)
+
+## Work in Progress 🚧
+
+- **Translation** 🌍: The translation feature still needs some work, particularly in the Ukrainian version. Some text might be missing or incorrect. Feel free to help improve the translations! 💬
+- **Deleting Anime** ❌: The delete functionality is currently broken. When trying to delete anime, it doesn't work as expected, and the data isn't saved correctly. We plan to fix this soon! 🛠️
+- **API Error Handling** 🚨: Some error handling (especially around the anime categories) could be more robust. We're working on improving this! ⚙️

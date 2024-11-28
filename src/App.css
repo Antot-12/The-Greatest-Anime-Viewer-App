@@ -36,3 +36,52 @@
     transform: rotate(360deg);
   }
 }
+.anime-card {
+  background-color: #2b2b2b;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.anime-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.anime-title {
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.anime-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.anime-summary {
+  margin: 10px 0;
+}
+
+.anime-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.anime-button {
+  flex: 1;
+  margin: 0 5px;
+}
+
+.search-field {
+  margin-bottom: 20px;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
